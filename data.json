@@ -1,0 +1,227 @@
+{
+  "elements": {
+    "box": {
+      "b_asset_name": "box_head",
+      "type": "head",
+      "size": 0,
+      "path": "",
+      "grouped": false
+    },
+    "bowl": {
+      "b_asset_name": "bowl_head",
+      "type": "head",
+      "size": 0,
+      "path": "",
+      "grouped": false
+    },
+    "sauce pan": {
+      "b_asset_name": "saucepan_head",
+      "type": "head",
+      "size": 0,
+      "path": "",
+      "grouped": false
+    },
+    "lamp": {
+      "b_asset_name": "lamp_head",
+      "type": "head",
+      "size": 0,
+      "path": "",
+      "grouped": false
+    },
+    "left boxing glove": {
+      "b_asset_name": "l_boxing_glove",
+      "type": "left_hand",
+      "size": 0,
+      "path": "",
+      "grouped": false
+    },
+    "right boxing glove": {
+      "b_asset_name": "r_boxing_glove",
+      "type": "right_hand",
+      "size": 0,
+      "path": "",
+      "grouped": false
+    },
+    "left mecha hand": {
+      "b_asset_name": "l_mecha_hand",
+      "type": "left_hand",
+      "size": 0,
+      "path": "",
+      "grouped": true
+    },
+    "right mecha hand": {
+      "b_asset_name": "r_mecha_hand",
+      "type": "right_hand",
+      "size": 0,
+      "path": "",
+      "grouped": true
+    },
+    "decagon body": {
+      "b_asset_name": "deca_body",
+      "type": "body",
+      "size": 0,
+      "path": "",
+      "grouped": false
+    },
+    "wavy body": {
+      "b_asset_name": "wavy_body",
+      "type": "body",
+      "size": 50,
+      "path": "",
+      "grouped": false
+    },
+    "left mecha arm": {
+      "b_asset_name": "l_mecha_arm",
+      "type": "left_arm",
+      "size": 50,
+      "path": "",
+      "grouped": true
+    },
+    "right mecha arm": {
+      "b_asset_name": "r_mecha_arm",
+      "type": "right_arm",
+      "size": 50,
+      "path": "",
+      "grouped": true
+    },
+    "left mecha leg": {
+      "b_asset_name": "l_mecha_leg",
+      "type": "left_leg",
+      "size": 50,
+      "path": "",
+      "grouped": true
+    },
+    "right mecha leg": {
+      "b_asset_name": "r_mecha_leg",
+      "type": "right_leg",
+      "size": 50,
+      "path": "",
+      "grouped": true
+    },
+    "mecha tail": {
+      "b_asset_name": "mecha_tail",
+      "type": "tail",
+      "size": 50,
+      "path": "",
+      "grouped": true
+    },
+    "left shoe": {
+      "b_asset_name": "l_shoe",
+      "type": "left_foot",
+      "size": 50,
+      "path": "",
+      "grouped": false
+    },
+    "right shoe": {
+      "b_asset_name": "r_shoe",
+      "type": "right_foot",
+      "size": 50,
+      "path": "",
+      "grouped": false
+    },
+    "left boot": {
+      "b_asset_name": "l_boot",
+      "type": "left_foot",
+      "size": 50,
+      "path": "",
+      "grouped": false
+    },
+    "right boot": {
+      "b_asset_name": "r_boot",
+      "type": "right_foot",
+      "size": 50,
+      "path": "",
+      "grouped": false
+    },
+    "left wing": {
+      "b_asset_name": "l_wing",
+      "type": "left_back",
+      "size": 50,
+      "path": "",
+      "grouped": false
+    },
+    "right wing": {
+      "b_asset_name": "r_back",
+      "type": "right_back",
+      "size": 50,
+      "path": "",
+      "grouped": false
+    },
+    "pawn eyes": {
+      "b_asset_name": "pawn eyes",
+      "type": "eyes",
+      "size": 50,
+      "path": "",
+      "grouped": true
+    }
+  },
+  "texture": {
+    "metal_rust": {
+      "base_color": "",
+      "displacement": "",
+      "normal_map": "",
+      "roughness": "",
+      "metallic": "",
+      "ao": ""
+    },
+    "name": "name used to identify object",
+    "type": "L_hand, R_hand, L_foot, R_foot, M_waist, Torso, Head, Cap, Tail",
+    "size": "dimensions of object",
+    "format": "obj, fbx",
+    "path": "obj location"
+  },
+  "initialization": {
+    "head": null,
+    "body": "deca_body",
+    "left_arm": null,
+    "right_arm": null,
+    "left_hand": null,
+    "right_hand": null,
+    "left_leg": null,
+    "right_leg": null,
+    "left_foot": null,
+    "right_foot": null,
+    "left_back": null,
+    "right_back": null,
+    "tail": null,
+    "eyes": null
+  },
+  "obj_attributes": {
+    "translateX": {
+      "attribute_name": "translateX",
+      "locked": true
+    },
+    "translateY": {
+      "attribute_name": "translateY",
+      "locked": true
+    },
+    "translateZ": {
+      "attribute_name": "translateZ",
+      "locked": true
+    },
+    "rotateX": {
+      "attribute_name": "rotateX",
+      "locked": true
+    },
+    "rotateY": {
+      "attribute_name": "rotateY",
+      "locked": true
+    },
+    "rotateZ": {
+      "attribute_name": "rotateZ",
+      "locked": true
+    },
+    "scaleX": {
+      "attribute_name": "scaleX",
+      "locked": true
+    },
+    "scaleY": {
+      "attribute_name": "scaleY",
+      "locked": true
+    },
+    "scaleZ": {
+      "attribute_name": "scaleZ",
+      "locked": true
+    }
+  }
+}
