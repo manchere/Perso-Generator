@@ -1430,8 +1430,8 @@ vn 0.978148 0.207912 0.000000
 vn 0.978148 0.207912 0.000000
 vn 0.978148 0.207912 0.000000
 s off
-g tail_0
-usemtl mecha_tail_initialShadingGroup
+g tail_1 mecha_tail
+usemtl mecha_tail_mecha_tail_mecha_tail_initialShadingGroup2
 f 167/1/1 168/2/2 169/3/3 170/4/4
 f 168/2/5 171/5/6 172/6/7 169/3/8
 f 171/5/9 173/7/10 174/8/11 172/6/12
@@ -3101,8 +3101,8 @@ vn 0.978148 0.207912 0.000000
 vn 0.978148 0.207912 0.000000
 vn 0.978148 0.207912 0.000000
 s off
-g tail_1
-usemtl mecha_tail_initialShadingGroup
+g mecha_tail tail_2
+usemtl mecha_tail_mecha_tail_mecha_tail_initialShadingGroup2
 f 394/271/931 395/272/932 396/273/933 397/274/934
 f 395/272/935 398/275/936 399/276/937 396/273/938
 f 398/275/939 400/277/940 401/278/941 399/276/942
@@ -4772,8 +4772,8 @@ vn 0.978148 0.207912 0.000000
 vn 0.978148 0.207912 0.000000
 vn 0.978148 0.207912 0.000000
 s off
-g tail_2
-usemtl mecha_tail_initialShadingGroup
+g mecha_tail tail_3
+usemtl mecha_tail_mecha_tail_mecha_tail_initialShadingGroup2
 f 621/541/1861 622/542/1862 623/543/1863 624/544/1864
 f 622/542/1865 625/545/1866 626/546/1867 623/543/1868
 f 625/545/1869 627/547/1870 628/548/1871 626/546/1872

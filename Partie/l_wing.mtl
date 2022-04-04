@@ -1,22 +1,16 @@
+newmtl aiStandardSurface22SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 0.00
 newmtl aiStandardSurface23SG
 illum 4
 Kd 0.00 0.00 0.00
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 Ni 0.00
-newmtl aiStandardSurface28SG
-illum 4
-Kd 0.00 0.00 0.00
-Ka 0.00 0.00 0.00
-Tf 1.00 1.00 1.00
-Ni 0.00
-newmtl aiStandardSurface29SG
-illum 4
-Kd 0.00 0.00 0.00
-Ka 0.00 0.00 0.00
-Tf 1.00 1.00 1.00
-Ni 0.00
-newmtl box_head_box_head_initialShadingGroup47
+newmtl box_head_box_head_initialShadingGroup43
 illum 4
 Kd 0.50 0.50 0.50
 Ka 0.00 0.00 0.00
@@ -40,7 +34,7 @@ Kd 0.50 0.50 0.50
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 Ni 1.00
-newmtl l_mecha_leg_initialShadingGroup10
+newmtl l_mecha_leg_initialShadingGroup8
 illum 4
 Kd 0.50 0.50 0.50
 Ka 0.00 0.00 0.00
@@ -52,6 +46,12 @@ Kd 0.50 0.50 0.50
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 Ni 1.00
+newmtl l_wing_aiStandardSurface17SG1
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 0.00
 newmtl mecha_tail_mecha_tail_mecha_tail_initialShadingGroup2
 illum 4
 Kd 0.50 0.50 0.50
@@ -70,9 +70,15 @@ Kd 0.50 0.50 0.50
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 Ni 1.00
-newmtl r_mecha_leg_initialShadingGroup10
+newmtl r_mecha_leg_initialShadingGroup8
 illum 4
 Kd 0.50 0.50 0.50
 Ka 0.00 0.00 0.00
 Tf 1.00 1.00 1.00
 Ni 1.00
+newmtl r_wing_aiStandardSurface17SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 0.00
