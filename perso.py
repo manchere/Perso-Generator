@@ -1,12 +1,43 @@
 import maya.cmds as cmds
 import json
 
+class Skeleton:
+
+    def __init__(self, data):
+        self.Data = data
+        self.Skel = self.Data['skeleton']
+
+        #self.__baseSkeleton()
+
+    def __baseSkeleton(self):
+        root_pos = self.Skel['root_hips']['pos']
+        cmds.joint(name='root_JNT', p=(root_pos[0], root_pos[1], root_pos[2]), rad=0.5)
+
+    def constructPartByPos(self, part):
+        for joint_name, joint_info in self.Skel[part]['joints']:
+            x, y, z = (i for i in joint_info['pos_info'])
+            cmds.joint(str(jointname), p=(x, y, z))
+
+    def constructPartByClust(self):
+        for joint_name, joint_info in self.Skel[part]['joints']:
+            x, y, z = [cmds.select() for i in joint_info['cluster_info'] for j in joint_info['cluster_info']]
+            cmds.joint(str(jointname), p=(x, y, z))
+
+    def constructBody(self):
+        pass
+
+    def constructArm(self):
+        pass
+
+
+    def skeletonize(self):
+        pass
+
 jpath = cmds.internalVar(usd=True) + 'TP_Perso/'
 
 # reading json
 with open(jpath + 'data.json') as jsonFile:
     jsonObject = json.load(jsonFile)
-
 
 class Perso:
 
@@ -16,16 +47,16 @@ class Perso:
         self.Current = self.Data['initialization']
         self.__checkCurrent()
 
-        self.__addJoint('neck', 0, 3.211, 0.161)
-        self.__addJoint('l_ankle', -0.372, 0.9, 0.121)
-        self.__addJoint('r_ankle', 0.372, 0.9, 0.121)
+        self.__addJointObj('neck', 0, 3.211, 0.161)
+        self.__addJointObj('r_ankle', -0.372, 0.9, 0.121)
+        self.__addJointObj('l_ankle', 0.372, 0.9, 0.121)
         self.__initAddPart('deca_body')
 
-    def __addJoint(self, jointName, xPos, yPos, rd):
+    def __addJointObj(self, jointName, xPos, yPos, rd):
         if not cmds.objExists(jointName):
             cmds.polySphere(n=jointName, sx=15, sy=15, r=rd)
             cmds.move(xPos, yPos, xy=True)
-            self.__lockTransform(jointName)
+            #self.__lockTransform(jointName)
 
     def __initAddPart(self, partName):
         pass
@@ -42,7 +73,7 @@ class Perso:
             cmds.file(self.Path + asset + '.obj', i=True, lck=True, gr=isGrouped, gn=asset)
 
             self.Current[partType] = asset
-            self.__lockTransform(asset)
+            #self.__lockTransform(asset)
 
     def __checkCurrent(self):
         for k, v in self.Current.items():
@@ -58,6 +89,7 @@ class Perso:
     def applySymmetry(self, ):
         if cmds.checkBox('sym', q=True, v=True):
             pass
+
 
 class Texturing:
 
@@ -80,12 +112,6 @@ class Texturing:
         cmds.select(objMesh)
         cmds.sets(edit=True, forceElement=myShader1 + 'SG')
 
-class skeleton:
-
-    def __init__(self):
-        pass
-
-    def __baseSkeleton(self):
 
 
 def make_optmenu(optMenName, optMenLbl, menuItems):
@@ -102,7 +128,6 @@ if cmds.window('Perso_Maker', exists=True):
     cmds.deleteUI('Perso_Maker')
 
 cmds.window('Perso_Maker', title='Perso Maker')
-
 cmds.frameLayout(label='Body Part Modification', cll=False, cl=False, bgc=[0.2, .35, 0.2], w=200)
 
 cmds.checkBox('sym', label='Apply Symmetry')
@@ -252,7 +277,7 @@ cmds.setParent('..')
 
 # ----------------------------------------------------------------------
 
-# Skeleton Definiton
+# Skeleton Definitioon
 
 cmds.frameLayout(label='Skeleton Definition', cll=False, cl=False, bgc=[0.2, .35, 0.2], w=200)
 cmds.rowColumnLayout(rowSpacing=(20, 20), numberOfColumns=1)
