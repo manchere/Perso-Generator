@@ -30,7 +30,6 @@
         "cluster_info": [[292], [285], [281], [288]],
         "pos_info": [0,8]
       }
-
     },
     "sauce pan": {
       "b_asset_name": "saucepan_head",
@@ -131,7 +130,7 @@
       "joints": {
       "l_foreleg_JNT": [[62,63], [70,71], [77,78], [85,86]],
       "l_leg_JNT": [[62,63], [70,71], [77,78], [85,86]]
-        }
+      }
     },
     "right mecha leg": {
       "b_asset_name": "r_mecha_leg",
@@ -168,7 +167,6 @@
         "l_ball_JNT": [[95], [84], [96], [83], [77], [102], [101], [78]],
         "l_foot_end_JNT": [[66], [71], [64], [68]]
       }
-
     },
     "right shoe": {
       "b_asset_name": "r_shoe",
@@ -305,56 +303,55 @@
   "skeleton": {
     "box": {
       "joints": {
-
         "box_head_JNT": {
           "b_asset_name": "box_head",
           "cluster_info": [[4,7], [24,35]],
-          "pos_info": null
+          "pos_info": [0 ,3.283, 0]
         },
 
         "box_head_end_JNT": {
           "cluster_info": [[0,3], [36,55]],
-          "pos_info": []
+          "pos_info": [0, 4.14, 0]
         },
 
         "l_box_flap_JNT": {
           "cluster_info": [[1,2], [41,45], [51,55]],
-          "pos_info": []
+          "pos_info": [0.483, 4.14, 0]
         },
 
         "l_box_flap_end_JNT": {
           "cluster_info": [[16,19]],
-          "pos_info": []
+          "pos_info": [0.757, 4.538, 0]
         },
 
         "r_box_flap_JNT": {
           "cluster_info": [[0],[3], [36,40], [46,50]],
-          "pos_info": []
+          "pos_info": [-0.483, 4.14, 0]
         },
 
         "r_box_flap_end_JNT": {
           "cluster_info": [[20,23]],
-          "pos_info": []
+          "pos_info": [-0.757, 4.538, 0]
         },
 
         "box_flap_front_JNT": {
           "cluster_info": [[0,1], [36,45]],
-          "pos_info": []
+          "pos_info": [0, 4.14, 0.482]
         },
 
         "box_flap_front_end_JNT": {
           "cluster_info": [[8,11]],
-          "pos_info": []
+          "pos_info": [0, 4.56, 0.78]
         },
 
         "box_flap_back_JNT": {
           "cluster_info": [[2,3], [46,55]],
-          "pos_info": []
+          "pos_info": [0, 4.14, -0.482]
         },
 
         "box_flap_back_end_JNT":{
           "cluster_info": [[12,15]],
-          "pos_info": []
+          "pos_info": [0, 4.56, -0.78]
         }
       }
     },
@@ -378,7 +375,7 @@
         "saucepan_head_JNT": {
           "b_asset_name": "saucepan_head",
           "cluster_info": [[319], [307], [308], [311], [41], [312], [315]],
-          "pos_info": null
+          "pos_info": []
           },
 
           "saucepan_head_end_JNT": {
