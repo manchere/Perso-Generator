@@ -306,52 +306,72 @@
         "box_head_JNT": {
           "b_asset_name": "box_head",
           "cluster_info": [[4,7], [24,35]],
-          "pos_info": [0 ,3.283, 0]
+          "pos_info": [0 ,3.283, 0],
+          "parent": null,
+          "binding": false
         },
 
         "box_head_end_JNT": {
           "cluster_info": [[0,3], [36,55]],
-          "pos_info": [0, 4.14, 0]
+          "pos_info": [0, 4.14, 0],
+          "parent": "box_head_JNT",
+          "binding": false
         },
 
         "l_box_flap_JNT": {
           "cluster_info": [[1,2], [41,45], [51,55]],
-          "pos_info": [0.483, 4.14, 0]
+          "pos_info": [0.483, 4.14, 0],
+          "parent": "box_head_JNT",
+          "binding": false
         },
 
         "l_box_flap_end_JNT": {
           "cluster_info": [[16,19]],
-          "pos_info": [0.757, 4.538, 0]
+          "pos_info": [0.757, 4.538, 0],
+          "parent": "l_box_flap_JNT",
+          "binding": false
         },
 
         "r_box_flap_JNT": {
           "cluster_info": [[0],[3], [36,40], [46,50]],
-          "pos_info": [-0.483, 4.14, 0]
+          "pos_info": [-0.483, 4.14, 0],
+          "parent": "box_head_JNT",
+          "binding": false
         },
 
         "r_box_flap_end_JNT": {
           "cluster_info": [[20,23]],
-          "pos_info": [-0.757, 4.538, 0]
+          "pos_info": [-0.757, 4.538, 0],
+          "parent": "r_box_flap_JNT",
+          "binding": false
         },
 
         "box_flap_front_JNT": {
           "cluster_info": [[0,1], [36,45]],
-          "pos_info": [0, 4.14, 0.482]
+          "pos_info": [0, 4.14, 0.482],
+          "parent": "box_head_JNT",
+          "binding": false
         },
 
         "box_flap_front_end_JNT": {
           "cluster_info": [[8,11]],
-          "pos_info": [0, 4.56, 0.78]
+          "pos_info": [0, 4.56, 0.78],
+          "parent": "box_flap_front_JNT",
+          "binding": false
         },
 
         "box_flap_back_JNT": {
           "cluster_info": [[2,3], [46,55]],
-          "pos_info": [0, 4.14, -0.482]
+          "pos_info": [0, 4.14, -0.482],
+          "parent": "box_head_JNT",
+          "binding": false
         },
 
         "box_flap_back_end_JNT":{
           "cluster_info": [[12,15]],
-          "pos_info": [0, 4.56, -0.78]
+          "pos_info": [0, 4.56, -0.78],
+          "parent": "box_flap_back_JNT",
+          "binding": false
         }
       }
     },
@@ -363,6 +383,7 @@
           "cluster_info": [[292], [285], [281], [288]],
           "pos_info": null
         },
+
         "bowl_head_end_JNT": {
           "cluster_info": null,
           "pos_info": [0, 0.8, 0]

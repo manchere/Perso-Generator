@@ -14,21 +14,29 @@ class Skeleton:
         cmds.joint(name='root_JNT', p=(root_pos[0], root_pos[1], root_pos[2]), rad=0.5)
 
     def constructPartByPos(self, part):
-        for joint_name, joint_info in self.Skel[part]['joints']:
-            x, y, z = (i for i in joint_info['pos_info'])
-            cmds.joint(str(jointname), p=(x, y, z))
+        for j_name, j_info in self.Skel[part]['joints'].items():
+            x, y, z = (i for i in j_info['pos_info'])
+            cmds.joint(n=str(joint_name), p=(x, y, z))
+            cmds.select(d=True)
 
     def constructPartByClust(self):
-        for joint_name, joint_info in self.Skel[part]['joints']:
-            x, y, z = [cmds.select() for i in joint_info['cluster_info'] for j in joint_info['cluster_info']]
+        for j_name, j_info in self.Skel[part]['joints'].items():
+            x, y, z = [cmds.select() for i in j_info['cluster_info'] for j in j_info['cluster_info']]
             cmds.joint(str(jointname), p=(x, y, z))
+
+    def createJointChain(self, part):
+        for j_name, j_info in self.Skel[part]['joints'].items():
+            if j_info['parent'] is not None:
+                cmds.parent(j_name, j_info['parent'])
+
+    def attachJoint(self):
+
 
     def constructBody(self):
         pass
 
     def constructArm(self):
         pass
-
 
     def skeletonize(self):
         pass
