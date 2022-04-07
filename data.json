@@ -308,7 +308,7 @@
           "cluster_info": [[4,7], [24,35]],
           "pos_info": [0 ,3.283, 0],
           "parent": null,
-          "binding": false
+          "binding":
         },
 
         "box_head_end_JNT": {

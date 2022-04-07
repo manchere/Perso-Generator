@@ -1,13 +1,14 @@
 import maya.cmds as cmds
 import json
 
+
 class Skeleton:
 
     def __init__(self, data):
         self.Data = data
         self.Skel = self.Data['skeleton']
 
-        #self.__baseSkeleton()
+        # self.__baseSkeleton()
 
     def __baseSkeleton(self):
         root_pos = self.Skel['root_hips']['pos']
@@ -30,10 +31,12 @@ class Skeleton:
                 cmds.parent(j_name, j_info['parent'])
 
     def attachJoint(self):
+        for j_name, j_info in self.Skel[part]['joints'].items():
+            if 'b_asset_name' in joint_info.keys():
+                cmds.parent(joint_info['b_asset_name'], joint_name)
 
+    def bindJoint(self):
 
-    def constructBody(self):
-        pass
 
     def constructArm(self):
         pass
@@ -41,11 +44,13 @@ class Skeleton:
     def skeletonize(self):
         pass
 
+
 jpath = cmds.internalVar(usd=True) + 'TP_Perso/'
 
 # reading json
 with open(jpath + 'data.json') as jsonFile:
     jsonObject = json.load(jsonFile)
+
 
 class Perso:
 
@@ -64,7 +69,7 @@ class Perso:
         if not cmds.objExists(jointName):
             cmds.polySphere(n=jointName, sx=15, sy=15, r=rd)
             cmds.move(xPos, yPos, xy=True)
-            #self.__lockTransform(jointName)
+            # self.__lockTransform(jointName)
 
     def __initAddPart(self, partName):
         pass
@@ -81,7 +86,7 @@ class Perso:
             cmds.file(self.Path + asset + '.obj', i=True, lck=True, gr=isGrouped, gn=asset)
 
             self.Current[partType] = asset
-            #self.__lockTransform(asset)
+            # self.__lockTransform(asset)
 
     def __checkCurrent(self):
         for k, v in self.Current.items():
@@ -119,7 +124,6 @@ class Texturing:
         # Selection d'un objet et set le shader
         cmds.select(objMesh)
         cmds.sets(edit=True, forceElement=myShader1 + 'SG')
-
 
 
 def make_optmenu(optMenName, optMenLbl, menuItems):
