@@ -1,7 +1,6 @@
 import maya.cmds as cmds
 import json
 
-
 class Skeleton:
 
     def __init__(self, data):
@@ -30,15 +29,15 @@ class Skeleton:
             if j_info['parent'] is not None:
                 cmds.parent(j_name, j_info['parent'])
 
-    def attachJoint(self):
+    def attachJoint(self, part):
         for j_name, j_info in self.Skel[part]['joints'].items():
-            if 'b_asset_name' in joint_info.keys():
-                cmds.parent(joint_info['b_asset_name'], joint_name)
+            if 'b_asset_name' in j_info.keys():
+                cmds.parent(j_info['b_asset_name'], j_name)
 
     def bindJoint(self):
+        pass
 
-
-    def constructArm(self):
+    def attachIKSystem(self):
         pass
 
     def skeletonize(self):
@@ -86,7 +85,7 @@ class Perso:
             cmds.file(self.Path + asset + '.obj', i=True, lck=True, gr=isGrouped, gn=asset)
 
             self.Current[partType] = asset
-            # self.__lockTransform(asset)
+            #self.__lockTransform(asset)
 
     def __checkCurrent(self):
         for k, v in self.Current.items():
