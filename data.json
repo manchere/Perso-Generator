@@ -222,7 +222,7 @@
       "grouped": false
     },
     "pawn eyes": {
-      "b_asset_name": "pawn eyes",
+      "b_asset_name": "pawn_eyes",
       "type": "eyes",
       "size": 50,
       "path": "",

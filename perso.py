@@ -62,17 +62,13 @@ class Perso:
         self.Skeleton = Skeleton(data)
 
         self.__checkCurrent()
+        #print(self.checkObjInSceneAsset())
+
 
         self.__addJointObj('neck', 0, 3.211, 0.161)
         self.__addJointObj('r_ankle', -0.372, 0.9, 0.121)
         self.__addJointObj('l_ankle', 0.372, 0.9, 0.121)
         self.__initAddPart('deca_body')
-
-        print('check scene')
-        print(self.checkObjInSceneAsset())
-
-        print('current')
-        print(self.Current.values())
 
     def __addJointObj(self, jointName, xPos, yPos, rd):
         if not cmds.objExists(jointName):
@@ -80,13 +76,7 @@ class Perso:
             cmds.move(xPos, yPos, xy=True)
             # self.__lockTransform(jointName)
 
-    def __checkCurrent(self):
-        for k, v in self.Current.items():
-            if not cmds.objExists(str()):
-                self.Current[k] = self.Selection[k] = None
-            else:
-                self.Current[k] = v
-                self.Selection[k] = self.getSelectionNameFromAsset(v)
+
 
     def __lockTransform(self, objName):
         for attr in self.Data['obj_attributes']:
@@ -96,20 +86,22 @@ class Perso:
     def __initAddPart(self, partName):
         pass
 
-    def __intersection(self, lst1, lst2):
-        temp = set(lst2)
-        lst3 = [value for value in lst1 if value in temp]
-        return lst3
+    def __checkCurrent(self):
+        for type, name in self.Current.items():
+            for type_scene, scene_name in self.checkObjInSceneAsset():
+                if type == type_scene:
+                    print('current type')
+                    print(self.Current[type])
+                    self.Current[type] = scene_name
+                    self.Selection[type] = self.getSelectionNameFromAsset(name)
 
     def checkObjInSceneAsset(self):
         info = [s for v in self.Data['elements'].values() for j, s in v.items() if j == 'b_asset_name' or j == 'type']
         grp_info = zip(*[iter(info)] * 2)
+        init_grp = zip(*[iter(info)] * 2)
         obj_in_scene = cmds.ls(type='transform')
-
-        for single_tuple in grp_info:
-            if single_tuple[0] in obj_in_scene:
-                print('single_tuple')
-                print(single_tuple[0])
+        for single_tuple in init_grp:
+            if single_tuple[0] not in obj_in_scene:
                 grp_info.remove(single_tuple)
         return grp_info
 
@@ -188,7 +180,6 @@ def make_optmenu(optMenName, optMenLbl, menuItems):
 
 def colorCgBtn(btnName, btnLbl, cmd):
     cmds.button(btnName, label=btnLbl, command=cmd)
-
 
 if cmds.window('Perso_Maker', exists=True):
     cmds.deleteUI('Perso_Maker')
@@ -351,7 +342,7 @@ cmds.setParent('..')
 cmds.setParent('..')
 
 cmds.rowColumnLayout(rowSpacing=(20, 20), numberOfColumns=2)
-cmds.frameLayout(label='', cll=False, cl=True, bgc=[0.2, 0.2, 0.8], w=200)
+cmds.frameLayout(label='List:', cll=False, cl=True, bgc=[0.2, 0.2, 0.2], w=200)
 
 cmds.setParent('..')
 cmds.setParent('..')
@@ -360,13 +351,13 @@ cmds.setParent('..')
 # ----------------------------------------------------------------------
 
 # Skeleton Definition
-
 u = cmds.frameLayout(label='Crowd Definition', cll=False, cl=False, bgc=[0.1, .35, 0.], w=200)
 cmds.rowColumnLayout(rowSpacing=(20, 20), numberOfColumns=1)
 cmds.button()
 cmds.setParent('..')
 cmds.setParent('..')
 # ----------------------------------------------------------------------------------------------
+
 cmds.tabLayout(tabs, edit=True, tabLabel=((t, "Character"), (u, "Crowd")))
 # On affiche la fenetre
 cmds.showWindow()
