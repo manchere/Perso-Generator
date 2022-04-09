@@ -245,9 +245,9 @@
     "format": "obj, fbx",
     "path": "obj location"
   },
-  "initialization": {
+  "obj_init": {
     "head": null,
-    "body": "deca_body",
+    "body": null,
     "left_arm": null,
     "right_arm": null,
     "left_hand": null,
@@ -261,6 +261,24 @@
     "tail": null,
     "eyes": null
   },
+
+  "selection_init": {
+    "head": null,
+    "body": null,
+    "left_arm": null,
+    "right_arm": null,
+    "left_hand": null,
+    "right_hand": null,
+    "left_leg": null,
+    "right_leg": null,
+    "left_foot": null,
+    "right_foot": null,
+    "left_back": null,
+    "right_back": null,
+    "tail": null,
+    "eyes": null
+  },
+
   "obj_attributes": {
     "translateX": {
       "attribute_name": "translateX",
