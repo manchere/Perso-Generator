@@ -20,6 +20,7 @@ class Skeleton:
         root_pos = self.Skel['root_hips']['pos']
         cmds.joint(name='root_JNT', p=(root_pos[0], root_pos[1], root_pos[2]), rad=0.5)
 
+    #valider
     def constructPartByPos(self, part):
         for j_name, j_info in self.Skel[part]['joints'].items():
             x, y, z = (i for i in j_info['pos_info'])
@@ -44,12 +45,14 @@ class Skeleton:
     def bindJoint(self):
         pass
 
+    def skeletonize(self):
+        return [self.constructPartByPos(self.Current) ]
+        #self.__constructFullPerso()
+        #self.__createJointChainFullPerso()
+        #self.__attachJointFullPerso()
+
     def attachIKSystem(self):
         pass
-
-    def skeletonize(self):
-        pass
-        # self.constructPartByPos()
 
 
 class Perso:
@@ -59,11 +62,9 @@ class Perso:
         self.Path = cmds.internalVar(usd=True) + 'TP_Perso/Partie/'
         self.Current = self.Data['obj_init']
         self.Selection = self.Data['selection_init']
-        self.Skeleton = Skeleton(data)
+        self.Skeleton = Skeleton(self.Data)
 
         self.__checkCurrent()
-        #print(self.checkObjInSceneAsset())
-
 
         self.__addJointObj('neck', 0, 3.211, 0.161)
         self.__addJointObj('r_ankle', -0.372, 0.9, 0.121)
@@ -76,8 +77,6 @@ class Perso:
             cmds.move(xPos, yPos, xy=True)
             # self.__lockTransform(jointName)
 
-
-
     def __lockTransform(self, objName):
         for attr in self.Data['obj_attributes']:
             cmds.setAttr(objName + '.' + str(self.Data['obj_attributes'][attr]['attribute_name']),
@@ -87,13 +86,12 @@ class Perso:
         pass
 
     def __checkCurrent(self):
-        for type, name in self.Current.items():
-            for type_scene, scene_name in self.checkObjInSceneAsset():
-                if type == type_scene:
-                    print('current type')
-                    print(self.Current[type])
-                    self.Current[type] = scene_name
-                    self.Selection[type] = self.getSelectionNameFromAsset(name)
+        for cur_key, cur_name in self.Current.items():
+            if cur_name not in self.checkObjInSceneAsset():
+                self.Current[cur_key] = None
+        for name, key in self.checkObjInSceneAsset():
+            self.Current[key] = name
+        print(self.Current)
 
     def checkObjInSceneAsset(self):
         info = [s for v in self.Data['elements'].values() for j, s in v.items() if j == 'b_asset_name' or j == 'type']
@@ -105,9 +103,7 @@ class Perso:
                 grp_info.remove(single_tuple)
         return grp_info
 
-
     def addPart(self, name):
-        self.__checkCurrent()
         menuName = cmds.optionMenu(name, q=True, value=True)
         asset = self.Data['elements'][menuName]['b_asset_name']
         partType = self.Data['elements'][menuName]['type']
@@ -119,36 +115,33 @@ class Perso:
 
             self.Current[partType] = asset
             self.Selection[partType] = menuName
+        self.__checkCurrent()
             # self.__lockTransform(asset)
 
     # find dropdown name when given asset name
     def getSelectionNameFromAsset(self, asset):
-        return [k for k, v in self.Data['elements'].items() if ('b_asset_name', asset) in v.items()]
+        return ''.join([k for k, v in self.Data['elements'].items() if ('b_asset_name', asset) in v.items()])
 
     def applySymmetry(self, ok):
         if cmds.checkBox('sym', q=True, v=True):
             pass
 
-    def __constructFullPerso(self):
+    # skeleton methods
+    def constructFullPerso(self):
+        for cur in self.Current.values():
+            if cur is not None:
+                self.Skeleton.constructPartByPos(self.getSelectionNameFromAsset(cur))
+
+    def createJointChainFullPerso(self):
         for part in self.Current.values():
             if part is not None:
-                self.Skeleton.constructPartByPos(part)
+                self.Skeleton.createJointChain(self.getSelectionNameFromAsset(cur))
 
-    def __createJointChainFullPerso(self):
-        for part in self.Current.values():
-            print(part)
-            if part is not None:
-                self.Skeleton.createJointChain(part)
-
-    def __attachJointFullPerso(self):
+    def attachJointFullPerso(self):
+        print(self.getSelectionNameFromAsset('wavy body'))
         for part in self.Current.values():
             if part is not None:
-                self.Skeleton.attachJoint(part)
-
-    def skeletonize(self):
-        self.__constructFullPerso()
-        self.__createJointChainFullPerso()
-        self.__attachJointFullPerso()
+                self.Skeleton.attachJoint(self.getSelectionNameFromAsset(part))
 
 
 class Texturing:
@@ -184,6 +177,8 @@ def colorCgBtn(btnName, btnLbl, cmd):
 if cmds.window('Perso_Maker', exists=True):
     cmds.deleteUI('Perso_Maker')
 
+print(pers.Current)
+
 cmds.window('Perso_Maker', title='Custom Crowd', w=400)
 tabs = cmds.tabLayout(innerMarginWidth=5, innerMarginHeight=5)
 
@@ -192,6 +187,15 @@ cmds.checkBox('sym', label='Apply Symmetry')
 cmds.checkBox('syme', label='Allow Lost Parts')
 
 pers = Perso(jsonObject)
+pers.constructFullPerso()
+pers.attachJointFullPerso()
+print('box_head')
+print(pers.getSelectionNameFromAsset('box_head'))
+skele = Skeleton(pers.Data)
+
+#skele.constructPartByPos('left wing')
+
+print(pers.Current)
 tex = Texturing()
 
 # Bouton head
@@ -335,7 +339,7 @@ cmds.setParent('..')
 
 cmds.rowColumnLayout(rowSpacing=(20, 20), numberOfColumns=2)
 cmds.frameLayout(label='Create', cll=False, cl=True, bgc=[0.2, 0.2, 0.2], w=200)
-cmds.button(label="Finialize Character", bgc=[0, 0.2, 0.3], command='pers.skeletonize()', w=200)
+cmds.button(label="Finalize Character", bgc=[0, 0.2, 0.3], command='pers.skeletonize()', w=200)
 cmds.button(label='Randomize Character', bgc=[0, 0.2, 0], command='', w=200)
 
 cmds.setParent('..')

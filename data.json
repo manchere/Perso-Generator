@@ -404,7 +404,7 @@
 
         "bowl_head_end_JNT": {
           "cluster_info": null,
-          "pos_info": [0, 0.8, 0]
+          "pos_info": [0, 4.1, 0]
         }
       }
     },
@@ -419,7 +419,7 @@
 
           "saucepan_head_end_JNT": {
             "cluster_info": null,
-            "pos_info": [0, 0.857, 0]
+            "pos_info": [0, 4.164, 0]
           }
         }
       },
@@ -784,14 +784,14 @@
         "l_forearm_JNT": {
           "b_asset_name": "l_forearm",
           "cluster_info": [[92,93],[100,101], [107,108], [115,116]],
-          "pos_info": [0.784, 2.996],
+          "pos_info": [0.784, 2.996, 0],
           "parent": "l_arm_JNT"
         },
 
         "l_arm_JNT": {
           "b_asset_name": "l_arm",
           "cluster_info": [[92,93],[100,101], [107,108], [115,116]],
-          "pos_info": [0.351, 2.996],
+          "pos_info": [0.351, 2.996, 0],
           "parent": "neck_JNT"
         }
       }
@@ -802,14 +802,14 @@
         "r_forearm_JNT": {
           "b_asset_name": "r_forearm",
           "cluster_info": [[92,93],[100,101], [107,108], [115,116]],
-          "pos_info": [-0.784, 2.996],
+          "pos_info": [-0.784, 2.996, 0],
           "parent": "r_arm_JNT "
         },
 
         "r_arm_JNT": {
           "b_asset_name": "r_arm",
           "cluster_info": [[92,93],[100,101], [107,108], [115,116]],
-          "pos_info": [-0.351, 2.996],
+          "pos_info": [-0.351, 2.996, 0],
           "parent": "neck_JNT"
         }
       }
