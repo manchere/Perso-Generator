@@ -70,6 +70,13 @@
       "path": "",
       "grouped": false
     },
+    "sphere body": {
+      "b_asset_name": "sphere_body",
+      "type": "body",
+      "size": 50,
+      "path": "",
+      "grouped": false
+    },
     "left mecha arm": {
       "b_asset_name": "l_mecha_arm",
       "type": "left_arm",
@@ -165,21 +172,6 @@
       "size": 50,
       "path": "",
       "grouped": true
-    },
-    "left ankle": {
-      "b_asset_name": "l_ankle",
-      "pos": [0.372, 0.9, 0],
-      "rad": 0.121
-    },
-    "right ankle": {
-      "b_asset_name": "r_ankle",
-      "pos": [-0.372, 0.9, 0],
-      "rad": 0.121
-    },
-    "neck": {
-      "b_asset_name": "neck",
-      "pos": [0, 3.211, 0],
-      "rad": 0.161
     }
   },
 
@@ -714,6 +706,7 @@
         },
 
         "neck_JNT": {
+          "b_asset_name": "neck",
           "cluster_info": [],
           "pos_info": [0, 3.022, 0],
           "parent": "body_JNT"
@@ -736,6 +729,30 @@
         },
 
         "neck_JNT": {
+          "b_asset_name": "neck",
+          "cluster_info": [],
+          "pos_info": [0, 3.022, 0],
+          "parent": "body_JNT"
+        }
+      }
+    },
+
+    "sphere body": {
+      "joints": {
+        "root_JNT": {
+          "cluster_info": [],
+          "pos_info": [0, 2.15, 0]
+        },
+
+        "body_JNT": {
+          "b_asset_name": "sphere_body",
+          "cluster_info": [],
+          "pos_info": [0, 2.32, 0],
+          "parent": "root_JNT"
+        },
+
+        "neck_JNT": {
+          "b_asset_name": "neck",
           "cluster_info": [],
           "pos_info": [0, 3.022, 0],
           "parent": "body_JNT"
@@ -1078,7 +1095,23 @@
       }
     }
   },
-
+  "base": {
+      "left ankle": {
+      "b_asset_name": "l_ankle",
+      "pos": [0.372, 0.9, 0],
+      "rad": 0.121
+    },
+    "right ankle": {
+      "b_asset_name": "r_ankle",
+      "pos": [-0.372, 0.9, 0],
+      "rad": 0.121
+    },
+    "neck": {
+      "b_asset_name": "neck",
+      "pos": [0, 3.211, 0],
+      "rad": 0.161
+    }
+  },
   "ctr_curves": {
 
   }

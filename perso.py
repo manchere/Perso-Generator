@@ -23,6 +23,7 @@ class Skeleton:
     # valider
     def constructPartByPos(self, part):
         for j_name, j_info in self.Skel[part]['joints'].items():
+            print(j_name+str(j_name))
             x, y, z = (i for i in j_info['pos_info'])
             cmds.joint(n=str(j_name), p=(x, y, z))
             cmds.select(d=True)
@@ -31,14 +32,6 @@ class Skeleton:
         for j_name, j_info in self.Skel[part]['joints'].items():
             x, y, z = [cmds.select() for i in j_info['cluster_info'] for j in j_info['cluster_info']]
             cmds.joint(str(jointname), p=(x, y, z))
-
-    def createJointChain_bis(self, part):
-        for j_name, j_info in self.Skel[part]['joints'].items():
-            if 'parent' in j and j_info is not None:
-                cmds.parent(j_name, j_info['parent'])
-                print('parent name')
-                print(j_info['parent'])
-                print(j_name)
 
     def createJointChain(self, part):
         for j_name, j_info in self.Skel[part]['joints'].items():
@@ -58,8 +51,16 @@ class Skeleton:
                 print('a joint is already attached')
                 continue
 
-    def bindJoint(self):
-        pass
+    def bindSkin(self):
+        for j_name, j_info in self.Skel[part]['joints'].items():
+            try:
+                if 'binding' in j_info.keys() and j_info['binding'] is True:
+                    cmds.bindSkin(tsb=True)
+                    cmds.skinCluster()
+            except:
+                print('a joint is already attached')
+                continue
+
 
     def attachIKSystem(self):
         pass
@@ -96,8 +97,8 @@ class Perso:
     def __checkCurrent(self):
         joint_check = [x for x in ('left ankle', 'right ankle', 'neck') if not cmds.objExists(x)]
         for i in joint_check:
-            data = self.Data['elements'][i]
-            self.__addJointObj(data['b_asset_name'], data['pos'][0], data['pos'][1], data['rad'])
+             data = self.Data['base'][i]
+             self.__addJointObj(data['b_asset_name'], data['pos'][0], data['pos'][1], data['rad'])
 
         for cur_key, cur_name in self.Current.items():
             if cur_name not in self.checkObjInSceneAsset():
@@ -121,6 +122,7 @@ class Perso:
         partType = self.Data['elements'][menuName]['type']
         self.__checkCurrent()
         if not cmds.objExists(asset):
+            print(self.Current)
             cmds.delete(self.Current[partType])
             # isGrouped = self.Data['elements'][menuName]['grouped']
             cmds.file(self.Path + asset + '.fbx', i=True, lck=True, gn=asset)
@@ -150,7 +152,6 @@ class Perso:
                 self.Skeleton.createJointChain(self.getSelectionNameFromAsset(part))
 
     def attachJointFullPerso(self):
-        print(self.getSelectionNameFromAsset('wavy body'))
         for part in self.Current.values():
             if part is not None:
                 self.Skeleton.attachJoint(self.getSelectionNameFromAsset(part))
@@ -220,7 +221,7 @@ cmds.setParent('..')
 # Bouton Body
 cmds.rowColumnLayout(rowSpacing=(20, 20), numberOfColumns=2)
 cmds.frameLayout(label='Body', cll=True, cl=True, bgc=[0.2, 0.2, 0.2], w=200)
-make_optmenu('Body', 'Body Type', ['decagon body', 'wavy body'])
+make_optmenu('Body', 'Body Type', ['decagon body', 'wavy body', 'sphere body'])
 cmds.optionMenu('Body', cc=lambda x: pers.addPart('Body'), e=True)
 colorCgBtn('body_color', 'Change body color', lambda x: tex.setTexture(pers.Current['body']))
 
