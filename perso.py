@@ -20,7 +20,7 @@ class Skeleton:
         root_pos = self.Skel['root_hips']['pos']
         cmds.joint(name='root_JNT', p=(root_pos[0], root_pos[1], root_pos[2]), rad=0.5)
 
-    #valider
+    # valider
     def constructPartByPos(self, part):
         for j_name, j_info in self.Skel[part]['joints'].items():
             x, y, z = (i for i in j_info['pos_info'])
@@ -32,10 +32,22 @@ class Skeleton:
             x, y, z = [cmds.select() for i in j_info['cluster_info'] for j in j_info['cluster_info']]
             cmds.joint(str(jointname), p=(x, y, z))
 
+    def createJointChain_bis(self, part):
+        for j_name, j_info in self.Skel[part]['joints'].items():
+            if 'parent' in j and j_info is not None:
+                cmds.parent(j_name, j_info['parent'])
+                print('parent name')
+                print(j_info['parent'])
+                print(j_name)
+
     def createJointChain(self, part):
         for j_name, j_info in self.Skel[part]['joints'].items():
-            if j_info['parent'] is not None:
-                cmds.parent(j_name, j_info['parent'])
+            try:
+                if 'parent' in j_info.keys():
+                    cmds.parent(j_name, j_info['parent'])
+            except:
+                print('a joint is already attached')
+                continue
 
     def attachJoint(self, part):
         for j_name, j_info in self.Skel[part]['joints'].items():
@@ -44,12 +56,6 @@ class Skeleton:
 
     def bindJoint(self):
         pass
-
-    def skeletonize(self):
-        return [self.constructPartByPos(self.Current) ]
-        #self.__constructFullPerso()
-        #self.__createJointChainFullPerso()
-        #self.__attachJointFullPerso()
 
     def attachIKSystem(self):
         pass
@@ -107,16 +113,16 @@ class Perso:
         menuName = cmds.optionMenu(name, q=True, value=True)
         asset = self.Data['elements'][menuName]['b_asset_name']
         partType = self.Data['elements'][menuName]['type']
-
+        self.__checkCurrent()
         if not cmds.objExists(asset):
             cmds.delete(self.Current[partType])
-            isGrouped = self.Data['elements'][menuName]['grouped']
-            cmds.file(self.Path + asset + '.obj', i=True, lck=True, gr=isGrouped, gn=asset)
+            # isGrouped = self.Data['elements'][menuName]['grouped']
+            cmds.file(self.Path + asset + '.fbx', i=True, lck=True, gn=asset)
 
             self.Current[partType] = asset
             self.Selection[partType] = menuName
         self.__checkCurrent()
-            # self.__lockTransform(asset)
+        # self.__lockTransform(asset)
 
     # find dropdown name when given asset name
     def getSelectionNameFromAsset(self, asset):
@@ -135,13 +141,18 @@ class Perso:
     def createJointChainFullPerso(self):
         for part in self.Current.values():
             if part is not None:
-                self.Skeleton.createJointChain(self.getSelectionNameFromAsset(cur))
+                self.Skeleton.createJointChain(self.getSelectionNameFromAsset(part))
 
     def attachJointFullPerso(self):
         print(self.getSelectionNameFromAsset('wavy body'))
         for part in self.Current.values():
             if part is not None:
                 self.Skeleton.attachJoint(self.getSelectionNameFromAsset(part))
+
+    def skeletonize(self):
+        self.constructFullPerso()
+        self.createJointChainFullPerso()
+        self.attachJointFullPerso()
 
 
 class Texturing:
@@ -171,13 +182,13 @@ def make_optmenu(optMenName, optMenLbl, menuItems):
     for item in menuItems:
         cmds.menuItem(item)
 
+
 def colorCgBtn(btnName, btnLbl, cmd):
     cmds.button(btnName, label=btnLbl, command=cmd)
 
+
 if cmds.window('Perso_Maker', exists=True):
     cmds.deleteUI('Perso_Maker')
-
-print(pers.Current)
 
 cmds.window('Perso_Maker', title='Custom Crowd', w=400)
 tabs = cmds.tabLayout(innerMarginWidth=5, innerMarginHeight=5)
@@ -186,16 +197,17 @@ t = cmds.rowColumnLayout(rowSpacing=(20, 20), numberOfColumns=2)
 cmds.checkBox('sym', label='Apply Symmetry')
 cmds.checkBox('syme', label='Allow Lost Parts')
 
+# pers.constructFullPerso()
+# pers.createJointChainFullPerso()
+# pers.attachJointFullPerso()
+# print(pers.Current)
+# print('box_head')
+# print(pers.getSelectionNameFromAsset('box_head'))
+# skele = Skeleton(pers.Data)
+# skele.constructPartByPos('left wing')
+# print(pers.Current)
+
 pers = Perso(jsonObject)
-pers.constructFullPerso()
-pers.attachJointFullPerso()
-print('box_head')
-print(pers.getSelectionNameFromAsset('box_head'))
-skele = Skeleton(pers.Data)
-
-#skele.constructPartByPos('left wing')
-
-print(pers.Current)
 tex = Texturing()
 
 # Bouton head
@@ -339,7 +351,7 @@ cmds.setParent('..')
 
 cmds.rowColumnLayout(rowSpacing=(20, 20), numberOfColumns=2)
 cmds.frameLayout(label='Create', cll=False, cl=True, bgc=[0.2, 0.2, 0.2], w=200)
-cmds.button(label="Finalize Character", bgc=[0, 0.2, 0.3], command='pers.skeletonize()', w=200)
+cmds.button(label="Finalize Character", bgc=[0, 0.2, 0.3], command=lambda x: pers.skeletonize(), w=200)
 cmds.button(label='Randomize Character', bgc=[0, 0.2, 0], command='', w=200)
 
 cmds.setParent('..')
@@ -366,3 +378,6 @@ cmds.tabLayout(tabs, edit=True, tabLabel=((t, "Character"), (u, "Crowd")))
 # On affiche la fenetre
 cmds.showWindow()
 jsonFile.close()
+
+
+

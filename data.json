@@ -414,12 +414,14 @@
         "head_JNT": {
           "b_asset_name": "saucepan_head",
           "cluster_info": [[319], [307], [308], [311], [41], [312], [315]],
-          "pos_info": [0, 3.283, 0]
+          "pos_info": [0, 3.283, 0],
+          "parent": "neck_JNT"
           },
 
           "saucepan_head_end_JNT": {
             "cluster_info": null,
-            "pos_info": [0, 4.164, 0]
+            "pos_info": [0, 4.164, 0],
+            "parent": "saucepan_head_end_JNT"
           }
         }
       },
@@ -930,7 +932,7 @@
           "parent": "r_heel_JNT"
         },
 
-        "l_foot_end_JNT": {
+        "r_foot_end_JNT": {
           "cluster_info": [[66], [71], [64], [68]],
           "pos_info": [-0.453, 0.15, 0.934],
           "parent": "r_ball_JNT"
@@ -988,7 +990,7 @@
           "parent": "r_heel_JNT"
         },
 
-        "l_foot_end_JNT": {
+        "r_foot_end_JNT": {
           "cluster_info": [[40,43]],
           "pos_info": [-0.453, 0.15, 0.934],
           "parent": "r_ball_JNT"
@@ -1001,7 +1003,7 @@
         "l_wing_scapula_JNT": {
           "cluster_info": [],
           "pos_info": [0.151, 2.93, -0.369],
-          "parent": "l_foreleg_JNT",
+          "parent": "neck_JNT",
           "binding": ""
         },
 
@@ -1015,7 +1017,7 @@
         "l_wing_2_JNT": {
           "cluster_info": [],
           "pos_info": [0.577, 3.803, -0.603],
-          "parent": "l_wing_scapula_JNT",
+          "parent": "l_wing_1_JNT",
           "binding": ""
         },
 
@@ -1029,7 +1031,7 @@
         "l_wing_3_JNT": {
           "cluster_info": [],
           "pos_info": [1.104, 4.663, -1.158],
-          "parent": "l_wing_scapula_JNT",
+          "parent": "l_wing_2_JNT",
           "binding": ""
         },
 
@@ -1042,12 +1044,14 @@
 
         "l_wing_4_JNT": {
           "cluster_info": [],
-          "pos_info": [1.792, 5.122, -1.751]
+          "pos_info": [1.792, 5.122, -1.751],
+          "parent": "l_wing_3_JNT"
         },
 
         "l_wing_end_JNT": {
           "cluster_info": [],
-          "pos_info": [2.936, 5.292, -1.989]
+          "pos_info": [2.936, 5.292, -1.989],
+          "parent": "l_wing_4_JNT"
         }
       }
     },
