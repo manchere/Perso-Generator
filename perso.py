@@ -51,8 +51,12 @@ class Skeleton:
 
     def attachJoint(self, part):
         for j_name, j_info in self.Skel[part]['joints'].items():
-            if 'b_asset_name' in j_info.keys():
-                cmds.parent(j_info['b_asset_name'], j_name)
+            try:
+                if 'b_asset_name' in j_info.keys():
+                    cmds.parent(j_info['b_asset_name'], j_name)
+            except:
+                print('a joint is already attached')
+                continue
 
     def bindJoint(self):
         pass
@@ -70,12 +74,8 @@ class Perso:
         self.Selection = self.Data['selection_init']
         self.Skeleton = Skeleton(self.Data)
 
+        self.__initAddPart()
         self.__checkCurrent()
-
-        self.__addJointObj('neck', 0, 3.211, 0.161)
-        self.__addJointObj('r_ankle', -0.372, 0.9, 0.121)
-        self.__addJointObj('l_ankle', 0.372, 0.9, 0.121)
-        self.__initAddPart('deca_body')
 
     def __addJointObj(self, jointName, xPos, yPos, rd):
         if not cmds.objExists(jointName):
@@ -83,21 +83,27 @@ class Perso:
             cmds.move(xPos, yPos, xy=True)
             # self.__lockTransform(jointName)
 
-    def __lockTransform(self, objName):
+    def __lockTransform(self):
         for attr in self.Data['obj_attributes']:
             cmds.setAttr(objName + '.' + str(self.Data['obj_attributes'][attr]['attribute_name']),
                          lock=self.Data['obj_attributes'][attr]['locked'])
 
-    def __initAddPart(self, partName):
-        pass
+    def __initAddPart(self):
+        self.__addJointObj('neck', 0, 3.211, 0.161)
+        self.__addJointObj('r_ankle', -0.372, 0.9, 0.121)
+        self.__addJointObj('l_ankle', 0.372, 0.9, 0.121)
 
     def __checkCurrent(self):
+        joint_check = [x for x in ('left ankle', 'right ankle', 'neck') if not cmds.objExists(x)]
+        for i in joint_check:
+            data = self.Data['elements'][i]
+            self.__addJointObj(data['b_asset_name'], data['pos'][0], data['pos'][1], data['rad'])
+
         for cur_key, cur_name in self.Current.items():
             if cur_name not in self.checkObjInSceneAsset():
                 self.Current[cur_key] = None
         for name, key in self.checkObjInSceneAsset():
             self.Current[key] = name
-        print(self.Current)
 
     def checkObjInSceneAsset(self):
         info = [s for v in self.Data['elements'].values() for j, s in v.items() if j == 'b_asset_name' or j == 'type']
@@ -122,7 +128,7 @@ class Perso:
             self.Current[partType] = asset
             self.Selection[partType] = menuName
         self.__checkCurrent()
-        # self.__lockTransform(asset)
+        #self.__lockTransform(asset)
 
     # find dropdown name when given asset name
     def getSelectionNameFromAsset(self, asset):
@@ -150,6 +156,7 @@ class Perso:
                 self.Skeleton.attachJoint(self.getSelectionNameFromAsset(part))
 
     def skeletonize(self):
+        self.__checkCurrent()
         self.constructFullPerso()
         self.createJointChainFullPerso()
         self.attachJointFullPerso()
@@ -196,16 +203,6 @@ tabs = cmds.tabLayout(innerMarginWidth=5, innerMarginHeight=5)
 t = cmds.rowColumnLayout(rowSpacing=(20, 20), numberOfColumns=2)
 cmds.checkBox('sym', label='Apply Symmetry')
 cmds.checkBox('syme', label='Allow Lost Parts')
-
-# pers.constructFullPerso()
-# pers.createJointChainFullPerso()
-# pers.attachJointFullPerso()
-# print(pers.Current)
-# print('box_head')
-# print(pers.getSelectionNameFromAsset('box_head'))
-# skele = Skeleton(pers.Data)
-# skele.constructPartByPos('left wing')
-# print(pers.Current)
 
 pers = Perso(jsonObject)
 tex = Texturing()

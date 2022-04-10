@@ -5,41 +5,21 @@
       "type": "head",
       "size": 0,
       "path": "",
-      "grouped": false,
-      "joints": {
-        "box_head_JNT": [[4,7], [24,35]],
-        "box_head_end_JNT": [[0,3], [36,55]],
-        "l_box_flap_JNT": [[1,2], [41,45], [51,55]],
-        "l_box_flap_end_JNT": [[16,19]],
-        "r_box_flap_JNT": [[0],[3], [36,40], [46,50]],
-        "r_box_flap_end_JNT": [[20,23]],
-        "box_flap_front_JNT": [[0,1], [36,45]],
-        "box_flap_front_end_JNT": [[8,11]],
-        "box_flap_back_JNT": [[2,3], [46,55]],
-        "box_flap_back_end_JNT": [[12,15]]
-      }
+      "grouped": false
     },
     "bowl": {
       "b_asset_name": "bowl_head",
       "type": "head",
       "size": 0,
       "path": "",
-      "grouped": false,
-      "joints": {
-        "name_JNT": "bowl_head_JNT",
-        "cluster_info": [[292], [285], [281], [288]],
-        "pos_info": [0,8]
-      }
+      "grouped": false
     },
     "sauce pan": {
       "b_asset_name": "saucepan_head",
       "type": "head",
       "size": 0,
       "path": "",
-      "grouped": false,
-      "joints": {
-        "saucepan_head_JNT": [[319], [307], [308], [311], [41], [312], [315]]
-      }
+      "grouped": false
     },
     "lamp": {
       "b_asset_name": "lamp_head",
@@ -53,30 +33,21 @@
       "type": "left_hand",
       "size": 0,
       "path": "",
-      "grouped": false,
-      "joints": {
-        "l_boxing_glove_JNT": [[166], [174], [171], [172]]
-      }
+      "grouped": false
     },
     "right boxing glove": {
       "b_asset_name": "r_boxing_glove",
       "type": "right_hand",
       "size": 0,
       "path": "",
-      "grouped": false,
-      "joints": {
-        "r_boxing_glove_JNT": [[166], [174], [171], [172]]
-      }
+      "grouped": false
     },
     "left mecha hand": {
       "b_asset_name": "l_mecha_hand",
       "type": "left_hand",
       "size": 0,
       "path": "",
-      "grouped": true,
-      "joints": {
-
-      }
+      "grouped": true
     },
     "right mecha hand": {
       "b_asset_name": "r_mecha_hand",
@@ -104,69 +75,42 @@
       "type": "left_arm",
       "size": 50,
       "path": "",
-      "grouped": true,
-      "joints": {
-        "l_forearm_JNT": [[92,93],[100,101], [107,108], [115,116]],
-        "l_arm_JNT": [[92,93],[100,101], [107,108], [115,116]]
-      }
+      "grouped": true
     },
     "right mecha arm": {
       "b_asset_name": "r_mecha_arm",
       "type": "right_arm",
       "size": 50,
       "path": "",
-      "grouped": true,
-      "joints": {
-      "r_forearm_JNT": [[92,93],[100,101], [107,108], [115,116]],
-      "r_arm_JNT": [[92,93],[100,101], [107,108], [115,116]]
-      }
+      "grouped": true
     },
     "left mecha leg": {
       "b_asset_name": "l_mecha_leg",
       "type": "left_leg",
       "size": 50,
       "path": "",
-      "grouped": true,
-      "joints": {
-      "l_foreleg_JNT": [[62,63], [70,71], [77,78], [85,86]],
-      "l_leg_JNT": [[62,63], [70,71], [77,78], [85,86]]
-      }
+      "grouped": true
     },
     "right mecha leg": {
       "b_asset_name": "r_mecha_leg",
       "type": "right_leg",
       "size": 50,
       "path": "",
-      "grouped": true,
-      "joints": {
-      "r_foreleg_JNT": [[62,63], [70,71], [77,78], [85,86]],
-      "r_leg_JNT": [[62,63], [70,71], [77,78], [85,86]]
-        }
+      "grouped": true
     },
     "mecha tail": {
       "b_asset_name": "mecha_tail",
       "type": "tail",
       "size": 50,
       "path": "",
-      "grouped": true,
-      "joints": {
-      "tail_1_JNT": [[47,48], [55,56], [62,63], [70,71]],
-      "tail_2_JNT": [[47,48], [55,56], [62,63], [70,71]],
-      "tail_3_JNT": [[47,48], [55,56], [62,63], [70,71]]
-      }
+      "grouped": true
     },
     "left shoe": {
       "b_asset_name": "l_shoe",
       "type": "left_foot",
       "size": 50,
       "path": "",
-      "grouped": false,
-      "joints": {
-        "l_ankle_JNT": [[93], [100,101], [108], [115,116]],
-        "l_heel_JNT": [[14], [23], [21], [30]],
-        "l_ball_JNT": [[95], [84], [96], [83], [77], [102], [101], [78]],
-        "l_foot_end_JNT": [[66], [71], [64], [68]]
-      }
+      "grouped": false
     },
     "right shoe": {
       "b_asset_name": "r_shoe",
@@ -199,13 +143,7 @@
       "type": "right_foot",
       "size": 50,
       "path": "",
-      "grouped": false,
-      "joints": {
-        "l_ankle": [[93], [100,101], [108], [115,116]],
-        "l_heel": [[95],[11]],
-        "l_ball": [[66], [69]],
-        "l_ball_end": [[40,43]]
-      }
+      "grouped": false
     },
     "left wing": {
       "b_asset_name": "l_wing",
@@ -227,6 +165,21 @@
       "size": 50,
       "path": "",
       "grouped": true
+    },
+    "left ankle": {
+      "b_asset_name": "l_ankle",
+      "pos": [0.372, 0.9, 0],
+      "rad": 0.121
+    },
+    "right ankle": {
+      "b_asset_name": "r_ankle",
+      "pos": [-0.372, 0.9, 0],
+      "rad": 0.121
+    },
+    "neck": {
+      "b_asset_name": "neck",
+      "pos": [0, 3.211, 0],
+      "rad": 0.161
     }
   },
 
@@ -245,6 +198,7 @@
     "format": "obj, fbx",
     "path": "obj location"
   },
+
   "obj_init": {
     "head": null,
     "body": null,
@@ -325,21 +279,21 @@
           "b_asset_name": "box_head",
           "cluster_info": [[4,7], [24,35]],
           "pos_info": [0 ,3.24, 0],
-          "parent": null,
+          "parent": "neck_JNT",
           "binding": true
         },
 
         "box_head_end_JNT": {
           "cluster_info": [[0,3], [36,55]],
           "pos_info": [0, 4.14, 0],
-          "parent": "box_head_JNT",
+          "parent": "head_JNT",
           "binding": false
         },
 
         "l_box_flap_JNT": {
           "cluster_info": [[1,2], [41,45], [51,55]],
           "pos_info": [0.483, 4.14, 0],
-          "parent": "box_head_JNT",
+          "parent": "head_JNT",
           "binding": false
         },
 
@@ -353,7 +307,7 @@
         "r_box_flap_JNT": {
           "cluster_info": [[0],[3], [36,40], [46,50]],
           "pos_info": [-0.483, 4.14, 0],
-          "parent": "box_head_JNT",
+          "parent": "head_JNT",
           "binding": false
         },
 
@@ -367,7 +321,7 @@
         "box_flap_front_JNT": {
           "cluster_info": [[0,1], [36,45]],
           "pos_info": [0, 4.14, 0.482],
-          "parent": "box_head_JNT",
+          "parent": "head_JNT",
           "binding": false
         },
 
@@ -381,7 +335,7 @@
         "box_flap_back_JNT": {
           "cluster_info": [[2,3], [46,55]],
           "pos_info": [0, 4.14, -0.482],
-          "parent": "box_head_JNT",
+          "parent": "head_JNT",
           "binding": false
         },
 
@@ -399,12 +353,14 @@
         "head_JNT": {
           "b_asset_name": "bowl_head",
           "cluster_info": [[292], [285], [281], [288]],
-          "pos_info": [0, 3.283, 0]
+          "pos_info": [0, 3.283, 0],
+          "parent": "neck_JNT"
         },
 
         "bowl_head_end_JNT": {
           "cluster_info": null,
-          "pos_info": [0, 4.1, 0]
+          "pos_info": [0, 4.1, 0],
+          "parent": "head_JNT"
         }
       }
     },
@@ -421,7 +377,7 @@
           "saucepan_head_end_JNT": {
             "cluster_info": null,
             "pos_info": [0, 4.164, 0],
-            "parent": "saucepan_head_end_JNT"
+            "parent": "head_JNT"
           }
         }
       },
@@ -431,12 +387,14 @@
         "head_JNT": {
           "b_asset_name": "lamp_head",
           "cluster_info": [[319], [307], [308], [311], [41], [312], [315]],
-          "pos_info": [0, 3.283, 0]
+          "pos_info": [0, 3.283, 0],
+          "parent": "neck_JNT"
           },
 
           "lamp_head_end_JNT": {
             "cluster_info": null,
-            "pos_info": [0, 0.857, 0]
+            "pos_info": [0, 4.36, 0],
+            "parent": "head_JNT"
           }
         }
       },
@@ -446,7 +404,8 @@
         "l_wrist_JNT": {
           "b_asset_name": "l_boxing_glove",
           "cluster_info": [[166], [174], [171], [172]],
-          "pos_info": [1.179, 2.996, 0]
+          "pos_info": [1.179, 2.996, 0],
+          "parent": "l_forearm_JNT"
         }
       }
     },
@@ -456,7 +415,8 @@
         "r_wrist_JNT": {
           "b_asset_name": "r_boxing_glove",
           "cluster_info": [[166], [174], [171], [172]],
-          "pos_info": [-1.179, 2.996, 0]
+          "pos_info": [-1.179, 2.996, 0],
+          "parent": "r_forearm_JNT"
         }
       }
     },
@@ -527,7 +487,8 @@
         "l_middle_2_JNT": {
           "b_asset_name": "l_hand_middle_2",
           "cluster_info": [],
-          "pos_info": [1.873, 3.039, 0.059]
+          "pos_info": [1.873, 3.039, 0.059],
+          "parent": "l_middle_1_JNT"
           },
 
         "l_middle_3_JNT": {
@@ -585,7 +546,7 @@
           },
 
         "l_pinky_3_JNT": {
-          "b_asset_name": "l_hand_pinky_2",
+          "b_asset_name": "l_hand_pinky_3",
           "cluster_info": [],
           "pos_info": [2.001, 3.034, -0.198],
           "parent": "l_pinky_2_JNT"
@@ -665,7 +626,8 @@
         "r_middle_2_JNT": {
           "b_asset_name": "r_hand_middle_2",
           "cluster_info": [],
-          "pos_info": [-1.873, 3.039, 0.059]
+          "pos_info": [-1.873, 3.039, 0.059],
+          "parent": "r_middle_1_JNT"
           },
 
         "r_middle_3_JNT": {
@@ -1061,7 +1023,7 @@
         "r_wing_scapula_JNT": {
           "cluster_info": [],
           "pos_info": [-0.151, 2.93, -0.369],
-          "parent": "r_foreleg_JNT",
+          "parent": "neck_JNT",
           "binding": ""
         },
 
@@ -1115,5 +1077,9 @@
         }
       }
     }
+  },
+
+  "ctr_curves": {
+
   }
 }
