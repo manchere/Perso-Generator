@@ -20,10 +20,17 @@ class Skeleton:
         root_pos = self.Skel['root_hips']['pos']
         cmds.joint(name='root_JNT', p=(root_pos[0], root_pos[1], root_pos[2]), rad=0.5)
 
+    def attachBase(self):
+        for key, obj in self.Data['base'].items():
+            try:
+                if 'joint' in obj.keys():
+                    cmds.parent(obj['b_asset_name'], obj['joint'])
+            except:
+                print('doesnt exist')
+
     # valider
     def constructPartByPos(self, part):
         for j_name, j_info in self.Skel[part]['joints'].items():
-            print(j_name+str(j_name))
             x, y, z = (i for i in j_info['pos_info'])
             cmds.joint(n=str(j_name), p=(x, y, z))
             cmds.select(d=True)
@@ -51,6 +58,7 @@ class Skeleton:
                 print('a joint is already attached')
                 continue
 
+
     def bindPart(self, part):
         for j_name, j_info in self.Skel[part]['joints'].items():
             print("within the binding")
@@ -75,6 +83,7 @@ class Perso:
         self.Current = self.Data['obj_init']
         self.Selection = self.Data['selection_init']
         self.Skeleton = Skeleton(self.Data)
+        self.Tool = Tools()
 
         self.__initAddPart()
         self.__checkCurrent()
@@ -126,11 +135,13 @@ class Perso:
             print(self.Current)
             cmds.delete(self.Current[partType])
             # isGrouped = self.Data['elements'][menuName]['grouped']
-            cmds.file(self.Path + asset + '.fbx', i=True, lck=True, gn=asset)
+            cmds.file(self.Path + asset + '.fbx', i=True, lck=True)
 
             self.Current[partType] = asset
             self.Selection[partType] = menuName
         self.__checkCurrent()
+        print("current names")
+        print(self.Current)
         #self.__lockTransform(asset)
 
     # find dropdown name when given asset name
@@ -156,6 +167,7 @@ class Perso:
         for part in self.Current.values():
             if part is not None:
                 self.Skeleton.attachJoint(self.getSelectionNameFromAsset(part))
+        self.Skeleton.attachBase()
 
     def bindFullPerso(self):
         for part in self.Current.values():
@@ -167,7 +179,11 @@ class Perso:
         self.constructFullPerso()
         self.createJointChainFullPerso()
         self.attachJointFullPerso()
+        self.Tool.arrangePerso()
+        self.Tool.groupPerso('Perso')
 
+    def randomize(self):
+        print(self.Current())
 
 class Texturing:
 
@@ -189,6 +205,24 @@ class Texturing:
         # Selection d'un objet et set le shader
         cmds.select(objMesh)
         cmds.sets(edit=True, forceElement=myShader1 + 'SG')
+
+class Tools:
+
+    def arrangePerso(self):
+        deleteList = []
+        for tran in cmds.ls(type='transform'):
+            if cmds.nodeType(tran) == 'transform':
+                children = cmds.listRelatives(tran, c=True)
+                if children == None:
+                    deleteList.append(tran)
+
+        if len(deleteList) > 0:
+            cmds.delete(deleteList)
+
+    def groupPerso(self, name):
+        grpname = cmds.group('root_JNT', n=name)
+        for cur_name in cmds.listRelatives(grpname, ad=True):
+            cmds.rename(cur_name, grpname + '_' + cur_name)
 
 
 def make_optmenu(optMenName, optMenLbl, menuItems):
