@@ -51,14 +51,15 @@ class Skeleton:
                 print('a joint is already attached')
                 continue
 
-    def bindSkin(self):
+    def bindPart(self, part):
         for j_name, j_info in self.Skel[part]['joints'].items():
+            print("within the binding")
             try:
                 if 'binding' in j_info.keys() and j_info['binding'] is True:
-                    cmds.bindSkin(tsb=True)
-                    cmds.skinCluster()
+                    cmds.skinCluster(j_info['b_asset_name'], str(j_name),  dr=4.5)
+                    print("binding box")
             except:
-                print('a joint is already attached')
+                print('a joint is already bound')
                 continue
 
 
@@ -155,6 +156,11 @@ class Perso:
         for part in self.Current.values():
             if part is not None:
                 self.Skeleton.attachJoint(self.getSelectionNameFromAsset(part))
+
+    def bindFullPerso(self):
+        for part in self.Current.values():
+            if part is not None:
+                self.Skeleton.bindPart(self.getSelectionNameFromAsset(part))
 
     def skeletonize(self):
         self.__checkCurrent()

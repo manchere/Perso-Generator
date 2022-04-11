@@ -596,7 +596,7 @@
           },
 
         "r_index_3_JNT": {
-          "b_asset_name": "l_hand_index_3",
+          "b_asset_name": "r_hand_index_3",
           "cluster_info": [],
           "pos_info": [-2.024, 3.039, 0.178],
           "parent": "r_index_2_JNT"
@@ -670,14 +670,14 @@
           },
 
         "r_pinky_2_JNT": {
-          "b_asset_name": "l_hand_pinky_2",
+          "b_asset_name": "r_hand_pinky_2",
           "cluster_info": [],
           "pos_info": [-1.815, 3.034, -0.198],
           "parent": "r_pinky_1_JNT"
           },
 
         "r_pinky_3_JNT": {
-          "b_asset_name": "r_hand_pinky_2",
+          "b_asset_name": "r_hand_pinky_3",
           "cluster_info": [],
           "pos_info": [-2.001, 3.034, -0.198],
           "parent": "r_pinky_2_JNT"
@@ -864,10 +864,11 @@
     "left shoe": {
       "joints": {
         "l_ankle_JNT": {
-         "b_asset_name": "l_ankle",
+         "b_asset_name": "l_shoe",
          "cluster_info": [[93], [100,101], [108], [115,116]],
           "pos_info": [0.372, 0.9, 0],
-          "parent": "l_foreleg_JNT"
+          "parent": "l_foreleg_JNT",
+          "binding": true
         },
 
         "l_heel_JNT": {
@@ -893,7 +894,7 @@
     "right shoe": {
      "joints": {
         "r_ankle_JNT": {
-         "b_asset_name": "r_ankle",
+         "b_asset_name": "r_shoe",
          "cluster_info": [[93], [100,101], [108], [115,116]],
           "pos_info": [-0.372, 0.9, 0],
           "parent": "r_foreleg_JNT"
@@ -922,7 +923,7 @@
     "left boot": {
       "joints": {
         "l_ankle_JNT": {
-         "b_asset_name": "l_ankle",
+         "b_asset_name": "l_boot",
          "cluster_info": [[93], [100,101], [108], [115,116]],
           "pos_info": [0.372, 0.9, 0],
           "parent": "l_foreleg_JNT"
@@ -951,7 +952,7 @@
     "right boot": {
       "joints": {
         "r_ankle_JNT": {
-         "b_asset_name": "r_ankle",
+         "b_asset_name": "r_boot",
          "cluster_info": [[93], [100,101], [108], [115,116]],
           "pos_info": [-0.372, 0.9, 0],
           "parent": "r_foreleg_JNT"
@@ -980,10 +981,11 @@
     "left wing": {
       "joints": {
         "l_wing_scapula_JNT": {
+          "b_asset_name": "l_wing",
           "cluster_info": [],
           "pos_info": [0.151, 2.93, -0.369],
           "parent": "neck_JNT",
-          "binding": ""
+          "binding": true
         },
 
         "l_wing_1_JNT": {
@@ -1038,10 +1040,11 @@
     "right wing": {
       "joints": {
         "r_wing_scapula_JNT": {
+          "b_asset_name": "r_wing",
           "cluster_info": [],
           "pos_info": [-0.151, 2.93, -0.369],
           "parent": "neck_JNT",
-          "binding": ""
+          "binding": true
         },
 
         "r_wing_1_JNT": {
