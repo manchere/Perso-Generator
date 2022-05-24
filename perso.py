@@ -1,7 +1,7 @@
 import maya.cmds as cmds
 import json
 
-jpath = cmds.internalVar(usd=True) + 'TP_Perso/'
+jpath = cmds.internalVar(usd=True) + 'perso-generator/'
 
 # reading json
 with open(jpath + 'data.json') as jsonFile:
@@ -79,7 +79,7 @@ class Perso:
 
     def __init__(self, data):
         self.Data = data
-        self.Path = cmds.internalVar(usd=True) + 'TP_Perso/Partie/'
+        self.Path = cmds.internalVar(usd=True) + 'perso-generator/Partie/'
         self.Current = self.Data['obj_init']
         self.Selection = self.Data['selection_init']
         self.Skeleton = Skeleton(self.Data)
@@ -118,7 +118,7 @@ class Perso:
 
     def checkObjInSceneAsset(self):
         info = [s for v in self.Data['elements'].values() for j, s in v.items() if j == 'b_asset_name' or j == 'type']
-        grp_info = zip(*[iter(info)] * 2)
+        grp_info = list(zip(*[iter(info)] * 2))
         init_grp = zip(*[iter(info)] * 2)
         obj_in_scene = cmds.ls(type='transform')
         for single_tuple in init_grp:
