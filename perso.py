@@ -61,11 +61,9 @@ class Skeleton:
 
     def bindPart(self, part):
         for j_name, j_info in self.Skel[part]['joints'].items():
-            print("within the binding")
             try:
                 if 'binding' in j_info.keys() and j_info['binding'] is True:
                     cmds.skinCluster(j_info['b_asset_name'], str(j_name),  dr=4.5)
-                    print("binding box")
             except:
                 print('a joint is already bound')
                 continue
@@ -132,25 +130,16 @@ class Perso:
         partType = self.Data['elements'][menuName]['type']
         self.__checkCurrent()
         if not cmds.objExists(asset):
-            print(self.Current)
             cmds.delete(self.Current[partType])
-            # isGrouped = self.Data['elements'][menuName]['grouped']
             cmds.file(self.Path + asset + '.fbx', i=True, lck=True)
 
             self.Current[partType] = asset
             self.Selection[partType] = menuName
         self.__checkCurrent()
-        print("current names")
-        print(self.Current)
-        #self.__lockTransform(asset)
 
     # find dropdown name when given asset name
     def getSelectionNameFromAsset(self, asset):
         return ''.join([k for k, v in self.Data['elements'].items() if ('b_asset_name', asset) in v.items()])
-
-    def applySymmetry(self, ok):
-        if cmds.checkBox('sym', q=True, v=True):
-            pass
 
     # skeleton methods
     def constructFullPerso(self):
@@ -183,7 +172,7 @@ class Perso:
         self.Tool.groupPerso('Perso')
 
     def randomize(self):
-        print(self.Current())
+        pass
 
 class Texturing:
 
@@ -223,6 +212,10 @@ class Tools:
         grpname = cmds.group('root_JNT', n=name)
         for cur_name in cmds.listRelatives(grpname, ad=True):
             cmds.rename(cur_name, grpname + '_' + cur_name)
+
+    def symmetrize(self, obj):
+        self.Data['elements']
+
 
 
 def make_optmenu(optMenName, optMenLbl, menuItems):
